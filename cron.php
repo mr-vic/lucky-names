@@ -28,7 +28,7 @@ for ($i = 0; $i < $limit_names; $i++){
     // Текущее имя 
     $current_name = $names[$i];
     // Имя файла обработанного изображения 
-    $file_jpeg = __DIR__ . "/out/lnimage$i.jpg";
+    $file_jpeg = __DIR__ . "/out/lnimage$i". date("d.m.Y") .".jpg";
     // Читаем картинку с шаблонов в ресурс 
     $image_template = imagecreatefromjpeg($image_file);
     // Вычисляем цвет для текста 
@@ -49,15 +49,5 @@ for ($i = 0; $i < $limit_names; $i++){
     imagejpeg($image_template, $file_jpeg);
     // Освобождаем память 
     imagedestroy($image_template);
-
 }
-// echo dirname(__FILE__) . "/" . $save_file . ".json" . "<br>";
-
-/* echo "<pre>";
-print_r($names);
-echo "</pre>";
-
-echo "<pre>";
-print_r($data);
-echo "</pre>"; */
  
