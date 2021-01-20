@@ -3,10 +3,8 @@
 $limit_names = 3;
 // Название файла csv
 $csv_file = "names.csv";
-
 /* // Название файла с выбранными данными в формате json
 $save_file = "current_names"; */
-
 // Массив для исходных данных
 $data = [];
 // Массив для отобранных имен
@@ -23,29 +21,20 @@ for ($i = 0; $i < $limit_names; $i++){
     $names[] = $data[rand(0, count($data)-1)];
 }
 
-/* // Сохраняем массив в файл $save_file
-$save_data = json_encode($names);
-file_put_contents(dirname(__FILE__) . "/" . $save_file . ".json", $save_data);
-
-// Получаем массив имен
-$file_name = "current_names";
-$data = file_get_contents(dirname(__FILE__) . "/" . $file_name . ".json");
-$names = json_decode($data); */
 // Шрифт для надписей 
-$font = __DIR__ . '/arialbd.ttf';
+$font = __DIR__ . 'font/main.ttf';
 // Текущая дата 
 $today = date("d.m.Y");
 // Размер скидки
 $discount = '20%';
 // Путь к файлу шаблону картинки 
-$image_file = __DIR__ . '/template.jpeg';
+$image_file = __DIR__ . 'template/main.jpeg';
 
 for ($i = 0; $i < $limit_names; $i++){
-
     // Текущее имя 
     $current_name = $names[$i];
     // Имя файла обработанного изображения 
-    $file_jpeg = "ln_$i.jpg";
+    $file_jpeg = "out\/ln_$i.jpg";
     // Читаем картинку с шаблонов в ресурс 
     $image_template = imagecreatefromjpeg($image_file);
     // Вычисляем цвет для текста 
