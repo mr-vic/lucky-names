@@ -28,7 +28,7 @@ for ($i = 0; $i < $limit_names; $i++){
     // Текущее имя 
     $current_name = $names[$i];
     // Имя файла обработанного изображения 
-    $file_jpeg = __DIR__ . "/out/lnimage$i". date("d.m.Y") .".jpg";
+    $file_jpeg = __DIR__ . "/out/lnimage$i.jpg";
     // Читаем картинку с шаблонов в ресурс 
     $image_template = imagecreatefromjpeg($image_file);
     // Вычисляем цвет для текста 
