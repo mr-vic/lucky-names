@@ -2,13 +2,19 @@
 // Количество выводимых имен за раз
 $limit_names = 3;
 // Название файла csv
-$csv_file = "names.csv";
-/* // Название файла с выбранными данными в формате json
-$save_file = "current_names"; */
+$csv_file = __DIR__ . '/data/names.csv';
 // Массив для исходных данных
 $data = [];
 // Массив для отобранных имен
 $names = [];
+// Шрифт для надписей 
+$font = __DIR__ . '/font/main.ttf';
+// Текущая дата 
+$today = date("d.m.Y");
+// Размер скидки
+$discount = '20%';
+// Путь к файлу шаблону картинки 
+$image_file = __DIR__ . '/template/main.jpeg';
 
 // Считываем данные из файла имен .csv в массив $data
 if (($handle = fopen($csv_file, "r")) !== FALSE) {
@@ -16,25 +22,13 @@ if (($handle = fopen($csv_file, "r")) !== FALSE) {
     fclose($handle);
 }
 
-// Выбираем три случайных имени
 for ($i = 0; $i < $limit_names; $i++){
+    // Выбираем случайное имя
     $names[] = $data[rand(0, count($data)-1)];
-}
-
-// Шрифт для надписей 
-$font = __DIR__ . 'font/main.ttf';
-// Текущая дата 
-$today = date("d.m.Y");
-// Размер скидки
-$discount = '20%';
-// Путь к файлу шаблону картинки 
-$image_file = __DIR__ . 'template/main.jpeg';
-
-for ($i = 0; $i < $limit_names; $i++){
     // Текущее имя 
     $current_name = $names[$i];
     // Имя файла обработанного изображения 
-    $file_jpeg = "out\/ln_$i.jpg";
+    $file_jpeg = __DIR__ . "/out/lnimage$i.jpg";
     // Читаем картинку с шаблонов в ресурс 
     $image_template = imagecreatefromjpeg($image_file);
     // Вычисляем цвет для текста 
