@@ -41,9 +41,9 @@ for ($i = 0; $i < $limit_names; $i++){
     $text_width = $text_box[2]-$text_box[0];
 
     // Выводим на картинке дату, % скидки, и Имя счастливчика по центру изображения 
-    imagefttext($image_template, 22, 0, 225, 200, $color, $font, $today);
-    imagefttext($image_template, 26, 0, 165, 245, $color, $font, $discount);
-    imagefttext($image_template, 36, 0, ($image_width / 2) - ($text_width / 2), 420, $color, $font, $current_name);
+    imagefttext($image_template, 22, 0, 225, 180, $color, $font, $today);
+    imagefttext($image_template, 26, 0, 165, 235, $color, $font, $discount);
+    imagefttext($image_template, 36, 0, ($image_width / 2) - ($text_width / 2), 405, $color, $font, $current_name);
 
     // Сохраняем обработанное изображение 
     imagejpeg($image_template, $file_jpeg);
