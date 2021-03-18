@@ -22,32 +22,35 @@ if (($handle = fopen($csv_file, "r")) !== FALSE) {
     fclose($handle);
 }
 
-for ($i = 0; $i < $limit_names; $i++){
-    // Выбираем случайное имя
-    $names[] = $data[rand(0, count($data)-1)];
-    // Текущее имя 
-    $current_name = $names[$i];
-    // Имя файла обработанного изображения 
-    $file_jpeg = __DIR__ . "/out/lnimage$i.jpg";
-    // Читаем картинку с шаблонов в ресурс 
-    $image_template = imagecreatefromjpeg($image_file);
-    // Вычисляем цвет для текста 
-    $color = imagecolorexact($image_template, 246, 208, 0);
+for ($j = 1; $j < 5; $j++){
+    $dateprint = date('d.m.Y', strtotime($today) + ($j + 2) * 86400);
+    for ($i = 0; $i < $limit_names; $i++){
+        // Выбираем случайное имя
+        $names[] = $data[rand(0, count($data)-1)];
+        // Текущее имя 
+        $current_name = $names[$i];
+        // Имя файла обработанного изображения 
+        $file_jpeg = __DIR__ . "/out/lnimage$j$i.jpg";
+        // Читаем картинку с шаблонов в ресурс 
+        $image_template = imagecreatefromjpeg($image_file);
+        // Вычисляем цвет для текста 
+        $color = imagecolorexact($image_template, 246, 208, 0);
 
-    // Ширина картинки 
-    $image_width = imagesx($image_template);
-    // Ширина текста с Именем
-    $text_box = imagettfbbox(36, 0, $font, $current_name);
-    $text_width = $text_box[2]-$text_box[0];
+        // Ширина картинки 
+        $image_width = imagesx($image_template);
+        // Ширина текста с Именем
+        $text_box = imagettfbbox(36, 0, $font, $current_name);
+        $text_width = $text_box[2]-$text_box[0];
 
-    // Выводим на картинке дату, % скидки, и Имя счастливчика по центру изображения 
-    imagefttext($image_template, 22, 0, 225, 180, $color, $font, $today);
-    imagefttext($image_template, 26, 0, 165, 235, $color, $font, $discount);
-    imagefttext($image_template, 36, 0, ($image_width / 2) - ($text_width / 2), 405, $color, $font, $current_name);
+        // Выводим на картинке дату, % скидки, и Имя счастливчика по центру изображения 
+        imagefttext($image_template, 22, 0, 225, 180, $color, $font, $dateprint);
+        imagefttext($image_template, 26, 0, 165, 235, $color, $font, $discount);
+        imagefttext($image_template, 36, 0, ($image_width / 2) - ($text_width / 2), 405, $color, $font, $current_name);
 
-    // Сохраняем обработанное изображение 
-    imagejpeg($image_template, $file_jpeg);
-    // Освобождаем память 
-    imagedestroy($image_template);
+        // Сохраняем обработанное изображение 
+        imagejpeg($image_template, $file_jpeg);
+        // Освобождаем память 
+        imagedestroy($image_template);
+    }
+    unset($names);
 }
- 
